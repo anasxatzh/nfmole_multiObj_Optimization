@@ -103,13 +103,14 @@ class ImportData(Base):
                 ]
 
         # APPLY WEIGHTS TO RISK DATA
-        weights_ = list(csv.reader(open(self.queryFile(fileName = "weights.csv"), "r"), delimiter=";")
+        weights = list(csv.reader(open(self.queryFile(fileName = "weights.csv"), "r"), delimiter=";")
                       )
 
         ## FLATTEN WEIGHT LIST
-        weights_ = [float(k) for k in sum(weights, [])]
-        weights_ = weights_[:len(data[0])]
-        weights = [1 for _ in weights_]
+        weights = [float(k) for k in sum(weights, [])]
+        weights = weights[:len(data[0])]
+        # weights = [1 for _ in weights_]
+        weights = [k/2 for k in weights]
 
 
         if len(data[0]) != len(weights):\
@@ -126,7 +127,7 @@ class ImportData(Base):
         return [
                 [riskD[r][v] * weights[v] for v in range(len(riskD[r]))]\
                 for r in range(len(riskD))
-               ], sum(weights_)
+               ], sum(weights)
 
 
 
