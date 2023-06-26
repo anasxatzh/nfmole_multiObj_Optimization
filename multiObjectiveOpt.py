@@ -109,7 +109,7 @@ class ImportData(Base):
         ## FLATTEN WEIGHT LIST
         weights = [float(k) for k in sum(weights, [])]
         weights = weights[:len(data[0])]
-        weights = [k/2 for k in weights] # REAL WEIGHTS ARE NOT ALL 1
+        weights = [k/2 for k in weights] # REAL WEIGHTS ARE NOT ALL 1s
 
 
         if len(data[0]) != len(weights):\
