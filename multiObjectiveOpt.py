@@ -109,7 +109,7 @@ class ImportData(Base):
         ## FLATTEN WEIGHT LIST
         weights = [float(k) for k in sum(weights, [])]
         weights = weights[:len(data[0])]
-        weights = [k/2 for k in weights] # REAL WEIGHTS ARE NOT ALL 1s
+        weights_ = [k/2 for k in weights] # REAL WEIGHTS ARE NOT ALL 1s
 
 
         if len(data[0]) != len(weights):\
@@ -126,7 +126,7 @@ class ImportData(Base):
         return [
                 [riskD[r][v] * weights[v] for v in range(len(riskD[r]))]\
                 for r in range(len(riskD))
-               ], sum(weights)
+               ], sum(weights_)
 
 
 
